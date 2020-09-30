@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <style>
-        h2{
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
+@extends('layout.master')
+<!-- kế thừa view master  -->
+@section('title','Danh sách học sinh')
+<!-- thay đổi nội dung -->
+@section('header','Danh sách học sinh')
+<!-- thay đổi nội dung phức tạp -->
+
+@section('content')
   <div class="container">
-  <h2>Danh sách sinh viên</h2>
- <br>
- <br>
 
    <table class="table">
        <thead>
@@ -57,5 +47,5 @@
        </tbody>
    </table>
   </div>
-</body>
-</html>
+ @endsection
+ @section('footer','footer students')
