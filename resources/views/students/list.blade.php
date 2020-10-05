@@ -1,14 +1,32 @@
-@extends('layout.master')
-<!-- kế thừa view master  -->
-@section('title','Danh sách học sinh')
-<!-- thay đổi nội dung -->
-@section('header','Danh sách học sinh')
-<!-- thay đổi nội dung phức tạp -->
+@extends('admin-layout.master')
 
 @section('content')
-  <div class="container">
 
-   <table class="table">
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Danh sách sinh viên</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Starter Page</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+             <table class="table">
        <thead>
            
            <th>Name</th>
@@ -17,11 +35,11 @@
            <th>Gender</th>
            <th>Address</th>
            <th>
-               <button type="button" class="btn btn-outline-success"> Them </button>
+               <button type="button" class="btn btn-outline-success"> Add </button>
            </th>
        </thead>
        <tbody>
-           @foreach($listStudents as $listItem)
+           @foreach($students as $listItem)
           <tr>
               
               <td>{{$listItem->name}}</td>
@@ -38,14 +56,22 @@
               </td>
               <td>{{$listItem->address}}</td>
               <td>
-                  <button type="button" class="btn btn-outline-primary">Sua</button>
-                  <button type="button" class="btn btn-outline-danger">Sua</button>
+                  <button type="button" class="btn btn-outline-primary">Edit</button>
+                  <button type="button" class="btn btn-outline-danger">Delete</button>
               </td>
              
           </tr>
           @endforeach
        </tbody>
    </table>
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
   </div>
+</div>
+
+  
+ 
  @endsection
- @section('footer','footer students')
