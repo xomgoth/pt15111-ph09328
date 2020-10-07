@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
-use App\Models\Students;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 
 class StudentsController extends Controller
 {
@@ -28,7 +28,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        dd('them ');
+        return view('students.create');
     }
 
     /**
@@ -39,7 +39,14 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        dd('Controlowerdsdfs');
+     $student = new Student;
+     $student->name = $request->name;
+     $student->phone = $request->phone;
+     $student->age = $request->age;
+     $student->address = $request->address;
+     $student->gender = $request->gender;
+     $student->save();
+      return redirect()->route('students.index');  
     }
 
     /**
@@ -49,14 +56,14 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
   
-    public function show(Student $students)
+    public function show(Student $student)
     {   
         //nếu chỉ truyền vào $students thì chỉ nhận được id của students
         // $studentObjEloquentModel = Student::find($students);
         // còn truyền vào Student $students thì tuy vấn tìm Students có id đó
         // $studentObj = DB::table('students')->find($students);
-        
-        return view('students.show',['students'=> $students]);
+        return view('students.show',['students'=> $student]);
+
     }
 
     /**
@@ -65,9 +72,9 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $students
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $students)
+    public function edit(Student $student)
     {
-        //
+            return view('students.edit',['student'=>$student]);
     }
 
     /**
@@ -77,9 +84,21 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $students
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $students)
+    public function update(Request $request, Student $student)
     {
-        //
+        //gán giá trị mới cho thuộc tính của students cần update
+        $student = new Student;
+     $student->name = $request->name;
+     $student->phone = $request->phone;
+     $student->age = $request->age;
+     $student->address = $request->address;
+     $student->gender = $request->gender;
+     $student->save();
+      return redirect()->route('students.index');  
+       // thực hiện gửi phương thức save()
+
+     
+
     }
 
     /**
@@ -88,8 +107,13 @@ class StudentsController extends Controller
      * @param  \App\Models\Students  $students
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $students)
+    public function destroy(Student $student)
     {
-        //
+      if($student) {
+          $student->delete(); // tra ve ket qua true or false
+      } 
+      // cach 2 $studen::destroy($studen->id);
+      return redirect()->route('students.index');
+      //redirect về danh sách (có thực hiện để lấy danh sách mới)
     }
 }
